@@ -1,0 +1,58 @@
+/*
+ * University of Central Florida
+ * COP3330 - Spring 2019
+ * Author: Liam May
+ */
+
+public class Euclid {
+
+	public static void main(String[] args) {
+		
+		if (args.length > 0) 
+        { 
+			int a = Integer.parseInt(args[0]), b = Integer.parseInt(args[1]);
+			if(b > a) {
+				int temp = a;
+				a = b;
+				b = temp;
+			}
+			
+            System.out.println("\n-------------------------------"); 
+            System.out.println("\nEuclid's Algorithm by Liam May:");
+            System.out.println("\nInputs: " + a + ", " + b);
+            gcd(a, b);
+        } 
+        else
+            System.out.println("Invalid syntax; cmd line arguments required");
+
+	}
+	
+	
+	public static void gcd(int a, int b) {
+		int a_orig = a, b_orig = b;
+		int q = a / b;
+		int c = b * q;
+		int r = a - c;
+		int rprev = r;
+		
+		if (r != 0) {
+			System.out.println(a + " = " + q + " ( " + b + " ) + " + rprev);
+		}
+		else {
+			System.out.println("==> gcd( " + a + ", " + b + " ) = " + b);
+			return;
+		}
+		
+		while (r != 0) {
+			rprev = r;
+			a = b;
+			b = r;
+			q = a / b;
+			c = b * q;
+			r = a - c;
+			
+			System.out.println(a + " = " + q + " ( " + b + " ) + " + r);
+		}
+		System.out.println("\n==> gcd( " + a_orig + ", " + b_orig + " ) = " + rprev + "\n");
+	}
+}
